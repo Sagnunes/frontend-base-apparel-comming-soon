@@ -16,7 +16,7 @@ module.exports = {
       },
       backgroundImage: {
         "soft-pink-gradient":
-          "linear-gradient(135deg,hsl(0, 80%, 86%),hsl(0, 80%, 86%))",
+          "linear-gradient(135deg,hsl(0, 80%, 86%),hsl(0, 100%, 98%)) no-repeat",
         "darker-pink-gradient":
           "linear-gradient(135deg,hsl(0, 80%, 86%), hsl(0, 74%, 74%))",
       },

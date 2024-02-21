@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//unpkg.com/alpinejs" defer></script>
     <!-- displays site properly based on user's device -->
     <link href="./output.css" rel="stylesheet" />
     <link
@@ -20,23 +21,103 @@
         font-size: 11px;
         text-align: center;
       }
+
       .attribution a {
         color: hsl(228, 45%, 44%);
       }
     </style>
   </head>
-  <body class="bg-soft-pink-gradient">
-    We're coming soon Hello fellow shoppers! We're currently building our new
-    fashion store. Add your email below to stay up-to-date with announcements
-    and our launch deals. Email Address
+  <body class="min-h-[800px] bg-soft-pink-gradient">
+    <main>
+      <header class="py-8 pl-8">
+        <img src="../images/logo.svg" alt="logo svg" />
+      </header>
 
-    <footer>
-      <p class="attribution">
-        Challenge by
-        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-          >Frontend Mentor</a
-        >. Coded by <a href="#">Your Name Here</a>.
-      </p>
-    </footer>
+      <section>
+        <img src="../images/hero-mobile.jpg" alt="hero mobile" />
+      </section>
+
+      <section class="mt-16 flex flex-col items-center justify-center px-8">
+        <h1
+          class="text-[40px] font-light uppercase leading-10 tracking-[10px] text-red-desaturated"
+        >
+          We're
+        </h1>
+        <span
+          class="w-full text-center text-[40px] font-semibold uppercase leading-10 tracking-[10px] text-red-darkGrayish"
+          >coming
+        </span>
+        <span
+          class="w-full text-center text-[40px] font-semibold uppercase leading-10 tracking-[10px] text-red-darkGrayish"
+          >soon
+        </span>
+        <p
+          class="mt-6 text-center text-sm font-normal leading-5 text-red-desaturated"
+        >
+          Hello fellow shoppers! We're currently building our new fashion store.
+          Add your email below to stay up-to-date with announcements and our
+          launch deals.
+        </p>
+        <div class="w-full" x-data="form">
+          <form class="mt-9 flex w-full" x-on:submit.prevent="submitForm">
+            <label for="email"></label>
+            <input
+              :class="error ? 'border-[3px] border-[#F96464] border-solid' : 'border-[1px] border-red-desaturated'"
+              class="w-full rounded-full bg-transparent px-6 py-4 placeholder:text-red-desaturated placeholder:opacity-30"
+              name="email"
+              id="email"
+              x-model="email"
+              placeholder="Email Address"
+            />
+            <img
+              src="../images/icon-error.svg"
+              alt="error icon"
+              class="absolute -bottom-[108px] sm:left-56 sm:h-8 sm:w-8"
+            />
+            <button
+              class="-ml-16 rounded-full bg-darker-pink-gradient px-8 py-5"
+              id="submitNewsletter"
+            >
+              <img src="../images/icon-arrow.svg" alt="right arrow" />
+            </button>
+          </form>
+          <div class="ml-8 mt-2 w-full">
+            <span class="text-sm text-[#F96464]" x-show="error"
+              >Please provide a valid email</span
+            >
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("form", () => ({
+        error: false,
+        email: "Teste",
+        submitForm() {
+          if (!this.validateEmail(this.email)) {
+            this.error = true;
+          } else {
+            this.error = false;
+          }
+        },
+        validateEmail(email) {
+          return String(email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            );
+        },
+      }));
+    });
+  </script>
 </html>
+<!--<footer>-->
+<!--  <p class="attribution">-->
+<!--    Challenge by-->
+<!--    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"-->
+<!--    >Frontend Mentor</a-->
+<!--    >. Coded by <a href="#">Your Name Here</a>.-->
+<!--  </p>-->
+<!--</footer>-->

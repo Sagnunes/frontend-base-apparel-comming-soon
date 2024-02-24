@@ -894,6 +894,10 @@ body{
     background-image: url('/images/bg-pattern-desktop.svg');
   }
 
+  .md\:bg-\[url\(\'\.\.\/images\/bg-pattern-desktop\.svg\'\)\]{
+    background-image: url('../images/bg-pattern-desktop.svg');
+  }
+
   .md\:px-40{
     padding-left: 10rem;
     padding-right: 10rem;

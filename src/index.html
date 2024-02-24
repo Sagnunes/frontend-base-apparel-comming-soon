@@ -27,80 +27,88 @@
       }
     </style>
   </head>
-  <body class="min-h-[800px] bg-soft-pink-gradient">
-    <main>
-      <header class="py-8 pl-8">
-        <img src="../images/logo.svg" alt="logo svg" />
-      </header>
+  <body class="font-josefin">
+    <header class="md:hidden m-8">
+      <img src="../images/logo.svg" alt="logo" />
+    </header>
 
-      <section>
-        <img src="../images/hero-mobile.jpg" alt="hero mobile" />
-      </section>
+    <div class="md:block absolute left-40 top-10 mb-20 hidden">
+      <img src="../images/logo.svg" alt="logo" />
+    </div>
 
-      <section class="mt-16 flex flex-col items-center justify-center px-8">
-        <h1
-          class="text-[40px] font-light uppercase leading-10 tracking-[10px] text-red-desaturated"
-        >
-          We're
-        </h1>
-        <span
-          class="w-full text-center text-[40px] font-semibold uppercase leading-10 tracking-[10px] text-red-darkGrayish"
-          >coming
-        </span>
-        <span
-          class="w-full text-center text-[40px] font-semibold uppercase leading-10 tracking-[10px] text-red-darkGrayish"
-          >soon
-        </span>
-        <p
-          class="mt-6 text-center text-sm font-normal leading-5 text-red-desaturated"
-        >
-          Hello fellow shoppers! We're currently building our new fashion store.
-          Add your email below to stay up-to-date with announcements and our
-          launch deals.
-        </p>
-        <div class="w-full" x-data="form">
-          <form class="mt-9 flex w-full" x-on:submit.prevent="submitForm">
+    <div
+      class="hero md:text-left md:flex-row md:h-screen flex flex-col-reverse bg-soft-pink-gradient text-center align-middle"
+    >
+      <div
+        class="md:mt-0 md:pt-10 md:px-40 md:pr-60 md:bg-[url('/images/bg-pattern-desktop.svg')] container mt-10 flex items-center px-2"
+      >
+        <div>
+          <h1 class="md:text-6xl text-4xl uppercase tracking-[0.4rem]">
+            <span class="font-light text-red-desaturated">We're</span><br />
+            <span class="font-semibold">coming</span><br />
+            <span class="font-semibold">soon</span>
+          </h1>
+          <p class="md:my-5 md:mx-0 m-5 text-red-desaturated">
+            Hello fellow shoppers! We're currently building our new fashion
+            store. Add your email below to stay up-to-date with announcements
+            and our launch deals.
+          </p>
+          <div
+            class="md:my-5 md:mx-0 relative mx-4 mb-24 flex flex-col"
+            x-data="form"
+          >
             <label for="email"></label>
             <input
-              :class="error ? 'border-[3px] border-[#F96464] border-solid' : 'border-[1px] border-red-desaturated'"
-              class="w-full rounded-full bg-transparent px-6 py-4 placeholder:text-red-desaturated placeholder:opacity-30"
-              name="email"
               id="email"
               x-model="email"
+              class="rounded-full border bg-transparent py-4 pl-8 text-red-desaturated ring-1 ring-red-desaturated placeholder:text-red-desaturated focus:outline-none focus:ring-2"
+              :class="error ? 'ring-2 ring-red-soft' : ''"
+              type="text"
               placeholder="Email Address"
             />
             <img
+              class="absolute right-24 top-4 h-6 w-6"
               src="../images/icon-error.svg"
-              alt="error icon"
-              class="absolute -bottom-[108px] sm:left-56 sm:h-8 sm:w-8"
+              alt="icon-error"
+              x-show="error"
             />
             <button
-              class="-ml-16 rounded-full bg-darker-pink-gradient px-8 py-5"
-              id="submitNewsletter"
+              class="top-sm absolute -right-1 max-w-fit rounded-full bg-darker-pink-gradient px-10 py-5 shadow-xl hover:cursor-pointer hover:opacity-80 hover:shadow-2xl"
+              @click="submitForm()"
             >
-              <img src="../images/icon-arrow.svg" alt="right arrow" />
+              <img src="../images/icon-arrow.svg" alt="submit-btn" />
             </button>
-          </form>
-          <div class="ml-8 mt-2 w-full">
-            <span class="text-sm text-[#F96464]" x-show="error"
-              >Please provide a valid email</span
-            >
+            <p x-show="error" class="ml-8 mt-2 text-left text-sm text-red-soft">
+              Please provide a valid email
+            </p>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+      <img class="md:hidden" src="../images/hero-mobile.jpg" alt="hero" />
+      <img
+        class="md:block hidden"
+        src="../images/hero-desktop.jpg"
+        alt="hero"
+      />
+    </div>
+    <footer>
+      <p class="attribution my-4">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://www.frontendmentor.io/profile/Sagnunes">Sérgio Nunes</a
+        >.
+      </p>
+    </footer>
   </body>
   <script>
     document.addEventListener("alpine:init", () => {
       Alpine.data("form", () => ({
         error: false,
-        email: "Teste",
+        email: "",
         submitForm() {
-          if (!this.validateEmail(this.email)) {
-            this.error = true;
-          } else {
-            this.error = false;
-          }
+          this.error = !this.validateEmail(this.email);
         },
         validateEmail(email) {
           return String(email)
@@ -113,11 +121,3 @@
     });
   </script>
 </html>
-<!--<footer>-->
-<!--  <p class="attribution">-->
-<!--    Challenge by-->
-<!--    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"-->
-<!--    >Frontend Mentor</a-->
-<!--    >. Coded by <a href="#">Your Name Here</a>.-->
-<!--  </p>-->
-<!--</footer>-->

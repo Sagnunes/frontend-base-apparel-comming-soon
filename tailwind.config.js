@@ -2,10 +2,6 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    screens: {
-      sm: "375px",
-      lg: "1440px",
-    },
     extend: {
       colors: {
         red: {
@@ -16,7 +12,7 @@ module.exports = {
       },
       backgroundImage: {
         "soft-pink-gradient":
-          "linear-gradient(135deg,hsl(0, 80%, 86%),hsl(0, 100%, 98%)) no-repeat",
+          "linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%))",
         "darker-pink-gradient":
           "linear-gradient(135deg,hsl(0, 80%, 86%), hsl(0, 74%, 74%))",
       },
